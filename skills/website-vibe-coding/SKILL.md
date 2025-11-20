@@ -357,7 +357,6 @@ export function cn(...inputs: ClassValue[]) {
 
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
-import { useRef } from 'react';
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -372,8 +371,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   delay = 0,
   direction = 'up',
 }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.1 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const directionOffset = {
     up: { x: 0, y: 30 },
@@ -387,9 +385,9 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     <motion.div
       ref={ref}
       initial={{ opacity: 0, ...directionOffset[direction] }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+      animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: 'easeOut' }}
-      style={{ willChange: isInView ? 'auto' : 'transform, opacity' }}
+      style={{ willChange: inView ? 'auto' : 'transform, opacity' }}
       className={className}
     >
       {children}
@@ -1049,8 +1047,6 @@ Update when:
 
 ---
 
----
-
 ## Asset Resources & Quick Start Defaults (2025)
 
 ### Icon Libraries
@@ -1463,7 +1459,7 @@ const industryDefaults = {
     secondaryColor: '#8B5CF6', // Violet
     accentColor: '#06B6D4', // Cyan
     fonts: {
-      heading: 'Satoshi',        // 2025 meta - or Plus Jakarta Sans (Google)
+      heading: 'Plus Jakarta Sans', // Google Fonts - modern geometric sans
       body: 'Inter',
     },
     traits: ['innovative', 'bold', 'cutting-edge'],
@@ -1553,7 +1549,7 @@ const industryDefaults = {
     secondaryColor: '#6B7280', // Gray
     accentColor: '#F59E0B', // Amber
     fonts: {
-      heading: 'Satoshi',        // 2025 - clean, modern
+      heading: 'Plus Jakarta Sans', // Google Fonts - clean, modern
       body: 'Inter',
     },
     traits: ['clean', 'modern', 'trustworthy'],
@@ -2213,11 +2209,22 @@ export const FAQ: React.FC<FAQProps> = ({
 
 ---
 
+## Related Skills
+
+**website-vibe-coding-troubleshooting**: Use this companion skill when you encounter:
+- ESLint errors blocking build
+- Animation performance issues (layout shift, jank)
+- SSR/hydration mismatches
+- TypeScript compilation errors
+- Deployment issues on Vercel
+
+---
+
 ## References
 
 Patterns in this skill are derived from:
-- Endless Winning (Next.js 16 marketing site)
+- Endless Winning (Next.js 15 marketing site)
 - WTA (Vite React enterprise application)
-- Freedom Path Wealth (Next.js 16 financial advisor site)
+- Freedom Path Wealth (Next.js 15 financial advisor site)
 
 All code templates are battle-tested in production environments.
