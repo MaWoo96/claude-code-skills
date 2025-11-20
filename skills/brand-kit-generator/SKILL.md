@@ -498,6 +498,209 @@ const contrast = chroma.contrast('#3B82F6', '#ffffff');
 // Returns: 4.5 (passes AA for large text)
 ```
 
+### Color Palette Resources (2025)
+
+```typescript
+const colorTools = {
+  // Gradient generator
+  hypercolor: {
+    url: 'https://hypercolor.dev',
+    best_for: 'Tailwind gradient presets',
+    usage: 'Copy-paste gradient classes',
+  },
+
+  // OKLCH - 2025 standard for perceptual uniformity
+  oklch_picker: {
+    url: 'https://oklch.com',
+    best_for: 'Perceptually uniform color scales',
+    note: 'Modern color space, better than HSL',
+  },
+
+  // AI color generation
+  huemint: {
+    url: 'https://huemint.com',
+    best_for: 'AI-generated palettes for brand identity',
+  },
+
+  khroma: {
+    url: 'https://www.khroma.co',
+    best_for: 'AI learns your color preferences',
+  },
+
+  // Accessibility
+  contrast_checker: {
+    url: 'https://webaim.org/resources/contrastchecker/',
+    best_for: 'WCAG contrast validation',
+  },
+
+  // Realtime preview
+  realtime_colors: {
+    url: 'https://www.realtimecolors.com',
+    best_for: 'Preview colors on actual UI',
+  },
+};
+```
+
+---
+
+## Font Pairing Recommendations (2025 Meta)
+
+### Typography Resources
+
+**Tier 1 - The 2025 Standard:**
+
+```typescript
+const typographyResources = {
+  // #1 Pick - 70-80% of hot 2025 landing pages use these
+  fontshare: {
+    url: 'https://www.fontshare.com',
+    license: '100% free for commercial use, no attribution',
+    run_by: 'Indian Type Foundry (ITF)',
+    top_fonts: [
+      'General Sans',      // The 2025 body font meta
+      'Switzer',           // Satoshi alternative
+      'Cabinet Grotesk',   // Premium display
+      'Instrument Sans',   // Clean modern
+      'Instrument Serif',  // Elegant headlines
+      'Bricolage Grotesque', // Quirky display
+      'Teneur',            // Luxury serif
+      'Clash Grotesk',     // Tech headlines (free weights)
+    ],
+  },
+
+  // Self-host any font with npm - fixes Google CDN speed + privacy
+  fontsource: {
+    url: 'https://fontsource.org',
+    best_for: 'Self-hosting Google Fonts + others',
+    note: 'Used in every serious Next.js + Tailwind project in 2025',
+    install: 'npm install @fontsource-variable/general-sans',
+  },
+
+  // Google Fonts - still excellent for specific pairings
+  google_fonts_2025_picks: [
+    'Manrope',           // Clean geometric sans
+    'Plus Jakarta Sans', // Perfect Neue Montreal replacement
+    'Space Grotesk',     // Tech/futuristic headlines
+    'Outfit',            // Friendlier Inter alternative
+    'Syne',              // Quirky display for creative agencies
+  ],
+
+  // Paid with generous free tiers
+  pangram_pangram: {
+    url: 'https://pangrampangram.com',
+    fonts: ['Neue Montreal', 'Clash Display', 'Satoshi', 'Mona Sans'],
+    note: 'Free personal-use weights or lookalikes available',
+  },
+
+  collletttivo: {
+    url: 'https://collletttivo.it',
+    best_for: 'High-end fonts with generous free weights',
+    fonts: ['Obviously', 'Teneur'],
+  },
+};
+```
+
+### The 2025 Copy-Paste Pairings
+
+These instantly make your site look like a $10k+ template:
+
+**Tech / SaaS:**
+```css
+font-family: "General Sans", sans-serif;      /* body - Fontshare */
+font-family: "Switzer", sans-serif;           /* alternative body */
+font-family: "Clash Grotesk", sans-serif;     /* headlines - free weights */
+```
+
+**Premium / Luxury:**
+```css
+font-family: "Teneur", serif;                 /* headlines - Fontshare */
+font-family: "Cabinet Grotesk", sans-serif;   /* body - Fontshare */
+```
+
+**Modern Corporate:**
+```css
+font-family: "Manrope", sans-serif;           /* body - Google Fonts */
+font-family: "Space Grotesk", sans-serif;     /* headlines */
+```
+
+**Friendly / Consumer:**
+```css
+font-family: "Obviously", sans-serif;         /* headlines - Collletttivo */
+font-family: "Inter", sans-serif;             /* body */
+```
+
+**Playful / Creative:**
+```css
+font-family: "Syne", sans-serif;              /* headlines - Google Fonts */
+font-family: "Instrument Sans", sans-serif;   /* body - Fontshare */
+```
+
+### Quick Setup with Fontsource
+
+**Install the 2025 meta stack:**
+```bash
+npm install @fontsource-variable/general-sans @fontsource-variable/switzer @fontsource-variable/instrument-sans
+```
+
+**Import in your CSS:**
+```css
+@import "@fontsource-variable/general-sans";
+@import "@fontsource-variable/switzer";
+@import "@fontsource-variable/instrument-sans";
+```
+
+**Or for Google Fonts alternatives:**
+```bash
+npm install @fontsource-variable/manrope @fontsource-variable/space-grotesk @fontsource-variable/plus-jakarta-sans
+```
+
+### Font Configuration in Tailwind CSS 4
+
+```css
+@theme inline {
+  /* Tech / SaaS (The 2025 Meta) */
+  --font-heading: 'Clash Grotesk', 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'General Sans', 'Switzer', system-ui, sans-serif;
+
+  /* Premium / Luxury */
+  --font-heading: 'Teneur', Georgia, serif;
+  --font-sans: 'Cabinet Grotesk', system-ui, sans-serif;
+
+  /* Modern Corporate */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  /* Playful / Creative */
+  --font-heading: 'Syne', system-ui, sans-serif;
+  --font-sans: 'Instrument Sans', system-ui, sans-serif;
+}
+```
+
+### Industry Font Recommendations
+
+| Industry | Heading Font | Body Font | Source |
+|----------|-------------|-----------|--------|
+| Tech / SaaS | Clash Grotesk | General Sans | Fontshare |
+| Finance / Luxury | Teneur | Cabinet Grotesk | Fontshare |
+| Modern Corporate | Space Grotesk | Manrope | Google Fonts |
+| Consumer / Friendly | Obviously | Inter | Collletttivo / Google |
+| Creative / Agency | Syne | Instrument Sans | Google / Fontshare |
+| E-commerce | Plus Jakarta Sans | Outfit | Google Fonts |
+| Developer | Space Grotesk | Inter | Google Fonts |
+
+### Google Fonts Direct Links
+
+```css
+/* Tech / SaaS */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* Friendly / Consumer */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
+
+/* Playful / Creative */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+```
+
 ---
 
 ## Interactive Refinement

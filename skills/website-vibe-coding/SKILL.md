@@ -1245,98 +1245,13 @@ const illustrationSources = {
 };
 ```
 
-### Font Pairing Recommendations (2025 Meta)
+### Font & Color Resources
 
-**Premium Pairings - The 2025 Standard:**
-
-```css
-/* SaaS / Tech Startup - THE 2025 META */
-/* Satoshi (heading) + Inter (body) */
-/* Source: https://www.fontshare.com/fonts/satoshi */
-@font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
-  font-weight: 400 900;
-  font-display: swap;
-}
-/* Satoshi is free from Fontshare - download and self-host */
-
-/* Alternative SaaS pairing */
-/* General Sans + Inter */
-/* Source: https://www.fontshare.com/fonts/general-sans */
-
-/* Premium / Luxury / Finance */
-/* Clash Display (heading) + Neue Montreal (body) */
-/* Both from: https://www.fontshare.com */
-
-/* Creative / Agency */
-/* Cabinet Grotesk + Switzer */
-/* Source: https://www.fontshare.com */
-```
-
-**Free Google Fonts Alternatives:**
-
-```css
-/* If you can't self-host, use these Google Font alternatives */
-
-/* Modern Tech (Satoshi alternative) */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-/* Plus Jakarta Sans - closest to Satoshi on Google Fonts */
-
-/* Professional / Corporate */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap');
-/* Source Serif 4 (heading) + Inter (body) */
-
-/* Friendly / Approachable */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
-/* DM Sans - versatile, works for both heading and body */
-
-/* Bold / Energetic */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
-/* Outfit - modern, geometric, great for fitness/energy */
-
-/* Minimal / Clean */
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
-/* Geist - Vercel's font, very 2025 */
-```
-
-**Free Premium Alternatives (Self-hosted):**
-
-```typescript
-const fontSources2025 = {
-  // Best free fonts source
-  fontshare: {
-    url: 'https://www.fontshare.com',
-    recommended: ['Satoshi', 'General Sans', 'Clash Display', 'Switzer', 'Cabinet Grotesk'],
-    license: 'Free for personal + commercial',
-  },
-
-  // GitHub-hosted alternatives
-  mona_sans: {
-    url: 'https://github.com/github/mona-sans',
-    best_for: 'Neue Montreal alternative (free)',
-  },
-
-  hubot_sans: {
-    url: 'https://github.com/github/hubot-sans',
-    best_for: 'Technical/developer sites',
-  },
-};
-```
-
-**Font Configuration in Tailwind CSS 4:**
-
-```css
-@theme inline {
-  /* 2025 SaaS Standard */
-  --font-heading: 'Satoshi', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
-
-  /* Or for luxury/finance */
-  --font-heading: 'Clash Display', Georgia, serif;
-  --font-sans: 'Neue Montreal', 'Mona Sans', system-ui, sans-serif;
-}
-```
+> **See the `brand-kit-generator` skill** for comprehensive font pairing recommendations, color palette tools, and 2025 typography standards. This includes:
+> - Premium font pairings (Satoshi + Inter, Clash Display + Neue Montreal)
+> - Google Fonts alternatives
+> - Color tools (OKLCH, Huemint, Khroma, Hypercolor)
+> - Industry-specific typography recommendations
 
 ### Logo Placeholder Solutions
 
@@ -1428,49 +1343,6 @@ const logoGenerators = {
     'https://looka.com',      // AI-generated, ~$20
     'https://brandmark.io',   // AI-generated, ~$25
   ],
-};
-```
-
-### Color Palette Resources (2025)
-
-```typescript
-const colorTools = {
-  // Gradient generator
-  hypercolor: {
-    url: 'https://hypercolor.dev',
-    best_for: 'Tailwind gradient presets',
-    usage: 'Copy-paste gradient classes',
-  },
-
-  // OKLCH - 2025 standard for perceptual uniformity
-  oklch_picker: {
-    url: 'https://oklch.com',
-    best_for: 'Perceptually uniform color scales',
-    note: 'Modern color space, better than HSL',
-  },
-
-  // AI color generation
-  huemint: {
-    url: 'https://huemint.com',
-    best_for: 'AI-generated palettes for brand identity',
-  },
-
-  khroma: {
-    url: 'https://www.khroma.co',
-    best_for: 'AI learns your color preferences',
-  },
-
-  // Accessibility
-  contrast_checker: {
-    url: 'https://webaim.org/resources/contrastchecker/',
-    best_for: 'WCAG contrast validation',
-  },
-
-  // Realtime preview
-  realtime_colors: {
-    url: 'https://www.realtimecolors.com',
-    best_for: 'Preview colors on actual UI',
-  },
 };
 ```
 
