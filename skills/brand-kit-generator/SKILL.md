@@ -9,7 +9,33 @@ This skill activates when users need to:
 - Export design tokens for Tailwind, CSS, or design tools
 - Develop full brand kits with semantic naming
 
-**Trigger phrases**: "create a color palette", "brand kit", "extract colors from", "generate brand colors", "design tokens", "accessibility check", "WCAG compliance"
+**Trigger phrases**: "create a color palette", "brand kit", "extract colors from", "generate brand colors", "design tokens", "accessibility check", "WCAG compliance", "dark mode colors"
+
+---
+
+## Quick Start vs Comprehensive
+
+### Quick Start Mode
+For fast palette generation when user wants speed over strategy:
+```
+User: "Quick palette for a fitness app"
+→ Skip detailed discovery
+→ Apply industry defaults (fitness = energy, motivation)
+→ Generate 5 colors with scales
+→ Validate accessibility
+→ Export ready-to-use tokens
+```
+
+### Comprehensive Mode
+For full brand development (default when user asks for "brand kit"):
+```
+User: "Create a complete brand kit for my startup"
+→ Full discovery questionnaire
+→ Competitor analysis
+→ Multiple palette options
+→ Light + dark mode
+→ Complete documentation
+```
 
 ---
 
@@ -31,6 +57,15 @@ Before generating any colors, gather context:
 - Cultural considerations for global brands
 - Light mode, dark mode, or both
 - Specific accessibility requirements beyond WCAG AA
+
+### Competitor Analysis
+Before finalizing palette, briefly check:
+```
+1. Identify 2-3 direct competitors
+2. Note their primary brand colors
+3. Ensure differentiation (different hue family or saturation level)
+4. Document why your palette stands out
+```
 
 ---
 
@@ -126,7 +161,52 @@ Generate 11-shade scales using perceptually uniform steps (Lab/LCH color space):
 
 ---
 
-## Phase 4: Accessibility Validation
+## Phase 4: Dark Mode Support
+
+When generating for both light and dark modes:
+
+### Dark Mode Strategy
+```
+Option 1: Inverted Scales (Recommended)
+- Light mode: 50-200 backgrounds, 700-950 text
+- Dark mode: 800-950 backgrounds, 50-300 text
+- Same scales, different semantic mappings
+
+Option 2: Adjusted Saturation
+- Dark backgrounds need lower saturation colors
+- Reduce saturation 10-20% for dark mode variants
+- Maintain hue consistency
+```
+
+### Semantic Token Mapping
+```css
+/* Light Mode */
+:root {
+  --color-bg-primary: var(--color-neutral-50);
+  --color-bg-secondary: var(--color-neutral-100);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-border: var(--color-neutral-200);
+}
+
+/* Dark Mode */
+:root.dark {
+  --color-bg-primary: var(--color-neutral-900);
+  --color-bg-secondary: var(--color-neutral-800);
+  --color-text-primary: var(--color-neutral-50);
+  --color-text-secondary: var(--color-neutral-400);
+  --color-border: var(--color-neutral-700);
+}
+```
+
+### Dark Mode Accessibility
+- Re-validate all contrast ratios for dark backgrounds
+- Primary colors often need lightening for dark mode
+- Test both modes independently
+
+---
+
+## Phase 5: Accessibility Validation
 
 ### WCAG Contrast Requirements
 | Text Type | AA Minimum | AAA Enhanced |
@@ -372,4 +452,154 @@ Success: Green family (#10B981)
 Warning: Amber family (#F59E0B)
 Error: Red family (#EF4444)
 Info: Blue family (#3B82F6)
+```
+
+---
+
+## Tools & Libraries
+
+### Recommended for Implementation
+```
+Color Manipulation:
+- chroma-js: Color conversions, scales, contrast
+- culori: OKLCH/Lab calculations, modern color spaces
+- color: Simple color parsing and manipulation
+
+Online Tools:
+- Realtime Colors: Live preview on UI mockups
+- Coolors: Palette generation and exploration
+- Contrast Checker: WebAIM contrast validation
+- OKLCH Color Picker: Perceptually uniform adjustments
+```
+
+### Code Example with chroma-js
+```javascript
+import chroma from 'chroma-js';
+
+// Generate perceptually uniform scale
+const generateScale = (baseColor, steps = 11) => {
+  const base = chroma(baseColor);
+  return chroma
+    .scale(['#ffffff', base, '#000000'])
+    .mode('lab')
+    .colors(steps);
+};
+
+// Check contrast ratio
+const contrast = chroma.contrast('#3B82F6', '#ffffff');
+// Returns: 4.5 (passes AA for large text)
+```
+
+---
+
+## Interactive Refinement
+
+### Specific Adjustment Questions
+Instead of "Do you like it?", ask:
+
+**For Hue Issues:**
+- "Should the primary lean more toward [warmer/cooler] tones?"
+- "Is the green too yellow-ish or too blue-ish?"
+
+**For Saturation Issues:**
+- "Does the palette feel too vibrant/muted for your brand?"
+- "Should the accent color pop more or blend in?"
+
+**For Lightness Issues:**
+- "Are the dark shades dark enough for good contrast?"
+- "Do the light backgrounds feel too stark or too creamy?"
+
+### Before/After Refinement Examples
+
+**Request: "Make it more energetic"**
+```
+Before: Primary #4A6FA5 (muted blue, S: 45%, L: 47%)
+After:  Primary #3B82F6 (vibrant blue, S: 90%, L: 60%)
+
+Changes made:
+- Increased saturation from 45% to 90%
+- Increased lightness from 47% to 60%
+- Shifted hue slightly warmer (more purple undertone)
+
+Why: Higher saturation creates visual energy;
+     increased lightness adds brightness/optimism
+```
+
+**Request: "Too corporate, needs to feel friendlier"**
+```
+Before: Primary #1E3A5F (dark navy)
+After:  Primary #6366F1 (indigo-violet)
+
+Changes made:
+- Shifted hue from blue (220°) to violet (239°)
+- Increased lightness significantly
+- Added warmth to feel more approachable
+
+Why: Purple/violet feels more creative and playful;
+     lighter colors feel less formal and austere
+```
+
+**Request: "The accent doesn't stand out enough"**
+```
+Before: Accent #F59E0B on Primary #3B82F6 background
+After:  Accent #FBBF24 on Primary #1E40AF background
+
+Changes made:
+- Lightened accent for better contrast
+- Darkened primary background
+- Maintained complementary relationship
+
+Why: Increased value contrast between accent and background;
+     complementary colors (blue/orange) already have hue contrast
+```
+
+---
+
+## Export Formats
+
+### Figma Import (ASE/JSON)
+```json
+{
+  "name": "Brand Colors",
+  "colors": [
+    {
+      "name": "Primary/500",
+      "color": { "r": 0.231, "g": 0.510, "b": 0.965 }
+    },
+    {
+      "name": "Primary/600",
+      "color": { "r": 0.145, "g": 0.388, "b": 0.922 }
+    }
+  ]
+}
+```
+
+### Adobe ASE Format
+For Illustrator/Photoshop import:
+```
+Provide hex values in format:
+Primary 500: #3B82F6
+Primary 600: #2563EB
+(User can import via Coolors or ASE converter)
+```
+
+### CSS-in-JS (styled-components/emotion)
+```typescript
+export const colors = {
+  primary: {
+    50: '#EFF6FF',
+    500: '#3B82F6',
+    900: '#1E3A8A',
+  },
+  semantic: {
+    text: {
+      primary: '#111827',
+      secondary: '#4B5563',
+    },
+    background: {
+      primary: '#FFFFFF',
+      secondary: '#F9FAFB',
+    },
+  },
+} as const;
 ```
