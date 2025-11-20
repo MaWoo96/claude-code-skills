@@ -1,8 +1,35 @@
 # Claude Code Skills
 
-A collection of production-tested Claude Code skills for web development workflows.
+A collection of production-tested Claude Code skills for web development and productivity workflows.
 
 ## Skills Included
+
+### obsidian-documentation
+**Purpose**: Create and manage documentation in your Obsidian vault following established schema and standards.
+
+**When to use**:
+- Creating session logs, decision logs, project READMEs
+- Managing Obsidian notes with proper frontmatter
+- Following wiki-links, tags, and naming conventions
+
+**Key features**:
+- Proper frontmatter schema
+- Folder structure standards
+- Wiki-link conventions
+- Tag organization
+
+### obsidian-session
+**Purpose**: Create structured session logs for Claude Code work sessions.
+
+**When to use**:
+- Starting a new work session ("start session [project-name]")
+- Documenting work progress
+- Creating session notes with metadata
+
+**Key features**:
+- Automatic metadata population
+- Recent context querying
+- Structured work documentation
 
 ### website-vibe-coding
 **Purpose**: Build production-quality marketing/business websites from scratch with minimal iteration.
@@ -39,12 +66,17 @@ A collection of production-tested Claude Code skills for web development workflo
 
 ## Tech Stack Covered
 
+**Web Development**:
 - **Frameworks**: Next.js 14+, Vite
 - **UI Libraries**: React 19, Tailwind CSS 4, shadcn/ui, Radix UI
 - **Animation**: Framer Motion / Motion library
 - **State**: TanStack Query, React hooks
 - **Database**: Supabase (PostgreSQL)
 - **Deployment**: Vercel
+
+**Productivity**:
+- **Knowledge Management**: Obsidian
+- **Documentation**: Markdown with frontmatter
 
 ## Installation
 
