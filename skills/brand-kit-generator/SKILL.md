@@ -1,9 +1,9 @@
 ---
 skill_name: brand-kit-generator
-description: Generate complete brand identity systems including colors and typography. Use when creating color palettes, selecting font pairings, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes OKLCH 2025 standard, 11-shade color scales, typography recommendations, dark mode support, and accessibility validation.
-version: 1.1.0
+description: Generate complete brand identity systems including colors and typography. Use when creating color palettes, selecting font pairings, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes OKLCH 2025 standard, 11-shade color scales, typography recommendations, dark mode support, accessibility validation, and AI asset generation prompts with style modifiers.
+version: 1.2.0
 author: MaWoo Development
-tags: [design, colors, typography, brand, accessibility, wcag, tailwind, design-tokens, fonts, oklch]
+tags: [design, colors, typography, brand, accessibility, wcag, tailwind, design-tokens, fonts, oklch, ai-generation]
 ---
 
 # Brand Kit Generator (Colors + Typography)
@@ -18,7 +18,7 @@ This skill activates when users need to:
 - Export design tokens for Tailwind, CSS, or design tools
 - Develop full brand kits with semantic naming
 
-**Trigger phrases**: "create a color palette", "brand kit", "extract colors from", "generate brand colors", "design tokens", "accessibility check", "WCAG compliance", "dark mode colors", "font pairing", "typography", "select fonts"
+**Trigger phrases**: "create a color palette", "brand kit", "extract colors from", "generate brand colors", "design tokens", "accessibility check", "WCAG compliance", "dark mode colors", "font pairing", "typography", "select fonts", "generate logo prompt", "icon pack", "AI assets"
 
 ---
 
@@ -199,10 +199,15 @@ OKLCH provides perceptually uniform colors - copy-paste these as starting points
 
 ### Neutral OKLCH Scale
 
-Every brand needs a well-crafted neutral scale:
+Every brand needs a well-crafted neutral scale. Choose based on brand personality:
+
+**When to use each undertone:**
+- **Hue 280 (purple)** → Tech, minimal, sophisticated brands
+- **Hue 80 (warm)** → Friendly, approachable, lifestyle brands
+- **Hue 240 (blue)** → Corporate, professional, trustworthy brands
 
 ```css
-/* Neutral scale with subtle warmth (hue 280 = slight purple undertone) */
+/* Tech/Minimal neutral scale (hue 280 = subtle purple undertone) */
 --color-neutral-50:  oklch(98% 0.005 280);   /* Near white */
 --color-neutral-100: oklch(95% 0.005 280);
 --color-neutral-200: oklch(90% 0.008 280);
@@ -215,11 +220,21 @@ Every brand needs a well-crafted neutral scale:
 --color-neutral-900: oklch(20% 0.010 270);
 --color-neutral-950: oklch(12% 0.010 270);   /* Near black */
 
-/* Cool neutral alternative (hue 240 = blue undertone) */
---color-neutral-500: oklch(65% 0.008 240);
+/* Warm/Friendly neutral scale (hue 80 = yellow-orange undertone) */
+--color-neutral-50:  oklch(99% 0.004 80);   /* Near white */
+--color-neutral-100: oklch(97% 0.006 80);
+--color-neutral-200: oklch(94% 0.009 80);
+--color-neutral-300: oklch(90% 0.012 80);
+--color-neutral-400: oklch(85% 0.014 80);
+--color-neutral-500: oklch(75% 0.016 80);   /* Mid-gray */
+--color-neutral-600: oklch(60% 0.016 80);
+--color-neutral-700: oklch(45% 0.014 80);
+--color-neutral-800: oklch(30% 0.012 80);
+--color-neutral-900: oklch(20% 0.009 80);
+--color-neutral-950: oklch(10% 0.005 80);   /* Near black */
 
-/* Warm neutral alternative (hue 60 = yellow undertone) */
---color-neutral-500: oklch(65% 0.008 60);
+/* Corporate neutral alternative (hue 240 = blue undertone) */
+--color-neutral-500: oklch(65% 0.008 240);
 ```
 
 > **Why OKLCH?** Unlike HSL, OKLCH maintains consistent perceived brightness across hues. A 65% lightness looks equally bright whether it's blue, green, or red.
@@ -472,6 +487,33 @@ Validate: Re-check accessibility
 
 ---
 
+## File Output Naming
+
+Generate files using the brand name (kebab-case):
+
+```
+[brand-name]-style-guide.html      # Interactive HTML style guide
+[brand-name]-design-tokens.json    # Design token specification
+[brand-name]-tailwind.config.ts    # Tailwind configuration
+[brand-name]-css-variables.css     # CSS custom properties
+[brand-name]-brand-kit.md          # Documentation and usage
+```
+
+**Example**: "Acme Corp" →
+- `acme-corp-style-guide.html`
+- `acme-corp-design-tokens.json`
+- `acme-corp-tailwind.config.ts`
+- `acme-corp-css-variables.css`
+- `acme-corp-brand-kit.md`
+- `acme-corp-ai-prompts.md` (if AI assets generated)
+
+**Include in every brand kit markdown**:
+1. Quick Start section with installation steps
+2. Figma import instructions
+3. Print/PDF export instructions for client sharing
+
+---
+
 ## Visual Artifacts
 
 When creating color artifacts:
@@ -504,6 +546,92 @@ When creating color artifacts:
   </div>
 </div>
 ```
+
+---
+
+## AI Asset Generation Prompts
+
+### Style Modifier Matrix
+
+Choose the appropriate style modifier based on the brand archetype:
+
+| Archetype | Style Modifier | Stroke | Corner | Notes |
+|-----------|----------------|--------|--------|-------|
+| **Premium Indie Tech** | (default) | 2.5px | 6-8px | The default for most tech brands |
+| **Corporate/Enterprise** | corporate minimalist, sharp geometry, Swiss design influence | 1.8px | 4px | Clean, professional, formal |
+| **Luxury/Fashion** | ultra-refined luxury aesthetic, couture negative space | 1.2px | 3px | Delicate, sophisticated |
+| **Brutalist/Bold** | brutalist geometry, editorial contrast | 4-5px | 0-2px | Heavy, impactful, statement |
+| **Playful/Kids** | friendly rounded, soft organic warmth | 3.5px | 12-16px | Approachable, fun |
+| **Elite Tech Builder** | premium indie tech aesthetic, geometric with personality | 2.5px | 6-8px | Modern builder/creator brands |
+
+### Universal Logo Prompt
+
+Use this template with your brand tokens:
+
+```
+Modern [STYLE_MODIFIER] logo for "{BRAND_NAME} – {ONE_SENTENCE_TAGLINE}",
+exact brand colors: primary {primary-500}, secondary {secondary-500}, accent {accent-500} on {neutral-50} background,
+typography: {heading-font-family} wordmark with perfect kerning,
+negative space mastery, timeless geometry, vector crisp,
+five variations: symbol only (--ar 1:1) · horizontal (--ar 3:1) · vertical (--ar 1:2) · monochrome black · monochrome white
+--stylize 0 --v 6 --q 2
+```
+
+> **Aspect ratio guidance**: Symbol-only uses 1:1, horizontal wordmarks use 3:1 or 4:1, vertical stacks use 1:2. Generate each variation separately with appropriate AR.
+
+**Example (Elite Tech Builder):**
+```
+Modern premium indie tech aesthetic logo for "Vibe With Matt – Vibe Code Your Vision Into Reality",
+exact brand colors: primary #2A7C7C, secondary #3D5A80, accent #E8A855 on #FAFAF9 background,
+typography: Space Grotesk wordmark with perfect kerning,
+negative space mastery, timeless geometry, vector crisp,
+five variations: symbol only (--ar 1:1) · horizontal (--ar 3:1) · vertical (--ar 1:2) · monochrome black · monochrome white
+--stylize 0 --v 6 --q 2
+```
+
+### Universal 64-Icon Pack Prompt
+
+Expanded icon set for comprehensive design systems:
+
+```
+Premium [STYLE_MODIFIER] 64-icon line system for {BRAND_NAME},
+{heading-font-family} geometric influence, [STROKE]px stroke [CORNER]px corner radius,
+24×24px grid 2px padding, perfect optical balance,
+colors only: {primary-600} {secondary-600} {accent-600} {neutral-700} on {neutral-50},
+subjects: home menu search settings profile code rocket zap sparkles cpu git-branch terminal database workflow magic-wand lightbulb play-circle file-code folder download upload link copy edit trash check x alert info chevron arrow heart cart credit-card bell mail share bookmark trending shield lock globe calendar clock sun moon star trophy flag target layers grid monitor phone tablet wifi battery volume mic camera image video music plus minus refresh repeat shuffle skip-forward skip-back,
+vector crisp, consistent weight, negative space mastery
+--ar 4:3 --stylize 0 --v 6 --q 2
+```
+
+**Example (Elite Tech Builder):**
+```
+Premium indie tech 64-icon line system for Vibe With Matt,
+Space Grotesk geometric influence, 2.5px stroke 6px corner radius,
+24×24px grid 2px padding, perfect optical balance,
+colors only: #226363 #314867 #C68A3A #454440 on #FAFAF9,
+subjects: home menu search settings profile code rocket zap sparkles cpu git-branch terminal database workflow magic-wand lightbulb play-circle file-code folder download upload link copy edit trash check x alert info chevron arrow heart cart credit-card bell mail share bookmark trending shield lock globe calendar clock sun moon star trophy flag target layers grid monitor phone tablet wifi battery volume mic camera image video music plus minus refresh repeat shuffle skip-forward skip-back,
+vector crisp, consistent weight, negative space mastery
+--ar 4:3 --stylize 0 --v 6 --q 2
+```
+
+### Negative Constraints
+
+Add these to your prompts to avoid common AI generation issues:
+
+```
+--no gradients, no 3D effects, no glossy, no shadows, no photorealism,
+no busy backgrounds, no complex textures, no multiple concepts
+```
+
+### Asset Generation Workflow
+
+After generating AI assets, follow this workflow:
+
+1. **Generate** using Midjourney, Flux, DALL-E, or Grok
+2. **Review** for brand alignment and consistency
+3. **Vectorize** in Figma or Illustrator (Image Trace)
+4. **Export** as SVG (icons) or PNG @2x (logos)
+5. **Organize** in `/public/icons/` and `/public/logos/`
 
 ---
 
@@ -811,13 +939,18 @@ Choose ONE pairing for your project:
 
 | Industry | Heading Font | Body Font | Source |
 |----------|-------------|-----------|--------|
-| Tech / SaaS | Clash Grotesk | General Sans | Fontshare |
-| Finance / Luxury | Teneur | Cabinet Grotesk | Fontshare |
+| Tech / SaaS | Space Grotesk | Plus Jakarta Sans | Google Fonts |
+| Finance / Luxury | Playfair Display | Manrope | Google Fonts |
 | Modern Corporate | Space Grotesk | Manrope | Google Fonts |
-| Consumer / Friendly | Obviously | Inter | Collletttivo / Google |
-| Creative / Agency | Syne | Instrument Sans | Google / Fontshare |
+| Consumer / Friendly | Outfit | Inter | Google Fonts |
+| Creative / Agency | Syne | Plus Jakarta Sans | Google Fonts |
 | E-commerce | Plus Jakarta Sans | Outfit | Google Fonts |
 | Developer | Space Grotesk | Inter | Google Fonts |
+| AI / Futuristic | Space Grotesk | Inter | Google Fonts |
+| High-End Fashion | Playfair Display | Plus Jakarta Sans | Google Fonts |
+| Web3 / Crypto | Syne | JetBrains Mono | Google Fonts |
+
+> **Note**: This table uses Google Fonts for broader accessibility. For premium alternatives, see the Fontshare options earlier in this section (General Sans, Clash Grotesk, Teneur, etc.).
 
 ### Google Fonts Direct Links
 
@@ -976,6 +1109,16 @@ export const colors = {
 ---
 
 ## Version History
+
+### v1.2.0 (2025-11)
+- Added AI Asset Generation Prompts section with universal templates
+- Added Style Modifier Matrix for different brand archetypes
+- Added Universal 64-Icon Pack Prompt (expanded from 30 icons)
+- Added Universal Logo Prompt with token placeholders
+- Added OKLCH warm neutral scale (hue 80 for modern warmth)
+- Added negative constraints for cleaner AI generations
+- Added Asset Generation Workflow (generate → vectorize → export)
+- Added Elite Tech Builder preset for builder/creator brands
 
 ### v1.1.0 (2025-11)
 - Added OKLCH palette examples and neutral scale (2025+ standard)
