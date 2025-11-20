@@ -509,7 +509,7 @@ export const Header: React.FC = () => {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-lg py-4'
+            ? 'bg-white/95 supports-[backdrop-filter]:backdrop-blur-lg shadow-lg py-4'
             : 'bg-transparent py-6'
         )}
       >
@@ -1456,6 +1456,7 @@ const industryDefaults = {
   tech_startup: {
     aesthetic: 'modern',
     primaryColor: '#6366F1', // Indigo
+    // OKLCH alternative: oklch(54.88% 0.2474 274.84) - perceptually uniform, better for gradients
     secondaryColor: '#8B5CF6', // Violet
     accentColor: '#06B6D4', // Cyan
     fonts: {
@@ -1615,8 +1616,14 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
+      {/* Background - 2025 gradient trend */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+
+      {/* Optional: Animated mesh gradient overlay for modern sites */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-transparent rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-secondary/10 via-transparent to-transparent rounded-full blur-3xl animate-pulse [animation-delay:2s]" />
+      </div>
 
       {/* Optional background image */}
       {backgroundImage && (
