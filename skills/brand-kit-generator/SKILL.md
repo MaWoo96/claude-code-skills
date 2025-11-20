@@ -1,9 +1,9 @@
 ---
 skill_name: brand-kit-generator
-description: Generate complete brand identity systems including colors and typography. Use when creating color palettes, selecting font pairings, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes 11-shade color scales, 2025 typography recommendations, dark mode support, and accessibility validation.
-version: 1.0.0
+description: Generate complete brand identity systems including colors and typography. Use when creating color palettes, selecting font pairings, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes OKLCH 2025 standard, 11-shade color scales, typography recommendations, dark mode support, and accessibility validation.
+version: 1.1.0
 author: MaWoo Development
-tags: [design, colors, typography, brand, accessibility, wcag, tailwind, design-tokens, fonts]
+tags: [design, colors, typography, brand, accessibility, wcag, tailwind, design-tokens, fonts, oklch]
 ---
 
 # Brand Kit Generator (Colors + Typography)
@@ -72,14 +72,17 @@ When using Quick Start mode, apply these sensible defaults based on industry:
 
 | Industry | Primary Color | Accent | Heading Font | Body Font |
 |----------|--------------|--------|--------------|-----------|
-| Tech / SaaS | `#3B82F6` Blue | `#8B5CF6` Violet | Clash Grotesk | General Sans |
-| Finance / Luxury | `#0F172A` Slate | `#D4AF37` Gold | Teneur | Cabinet Grotesk |
+| Tech / SaaS | `#3B82F6` Blue | `#8B5CF6` Violet | Space Grotesk | Plus Jakarta Sans |
+| Finance / Luxury | `#0F172A` Slate | `#D4AF37` Gold | Playfair Display | Manrope |
 | Healthcare | `#10B981` Emerald | `#3B82F6` Blue | Manrope | Inter |
 | Fitness / Energy | `#EF4444` Red | `#FBBF24` Amber | Space Grotesk | Manrope |
-| Creative / Agency | `#8B5CF6` Violet | `#EC4899` Pink | Syne | Instrument Sans |
+| Creative / Agency | `#8B5CF6` Violet | `#EC4899` Pink | Syne | Plus Jakarta Sans |
 | E-commerce | `#6366F1` Indigo | `#F59E0B` Orange | Plus Jakarta Sans | Outfit |
 | Education | `#0EA5E9` Sky | `#10B981` Emerald | Manrope | Inter |
-| Food / Restaurant | `#DC2626` Red | `#16A34A` Green | Cabinet Grotesk | General Sans |
+| Food / Restaurant | `#DC2626` Red | `#16A34A` Green | Space Grotesk | Plus Jakarta Sans |
+| **AI / Futuristic** | `#A855F7` Purple | `#22D3EE` Cyan | Space Grotesk | Inter |
+| **High-End Fashion** | `#18181B` Zinc | `#FAFAFA` White | Playfair Display | Plus Jakarta Sans |
+| **Web3 / Crypto** | `#F97316` Orange | `#3B82F6` Blue | Syne | JetBrains Mono |
 
 ### Color Rationale by Industry
 
@@ -89,6 +92,9 @@ When using Quick Start mode, apply these sensible defaults based on industry:
 **Fitness**: Red = energy/action, amber = motivation
 **Creative**: Violet = creativity, pink = boldness
 **E-commerce**: Indigo = reliability, orange = urgency
+**AI / Futuristic**: Purple = innovation/mystery, cyan = technology/clarity
+**High-End Fashion**: Near-black = sophistication, white = minimalist luxury
+**Web3 / Crypto**: Orange = energy/disruption, blue = trust in decentralization
 
 ---
 
@@ -168,6 +174,55 @@ Success:     #10B981 (green family)
 Warning:     #F59E0B (amber family)
 Error:       #EF4444 (red family)
 ```
+
+### OKLCH Palette Examples (2025+ Standard)
+
+OKLCH provides perceptually uniform colors - copy-paste these as starting points:
+
+```css
+/* Primary palette options */
+--color-primary: oklch(65% 0.22 260);    /* Vibrant blue-purple */
+--color-primary: oklch(60% 0.18 220);    /* Professional blue */
+--color-primary: oklch(55% 0.20 280);    /* Deep violet */
+
+/* Accent options */
+--color-accent: oklch(75% 0.30 70);      /* Electric lime */
+--color-accent: oklch(70% 0.25 350);     /* Hot pink */
+--color-accent: oklch(80% 0.22 90);      /* Sunny yellow */
+
+/* Semantic colors */
+--color-success: oklch(65% 0.20 150);    /* Fresh green */
+--color-warning: oklch(75% 0.18 85);     /* Amber */
+--color-error: oklch(60% 0.25 25);       /* Red */
+--color-info: oklch(65% 0.18 240);       /* Blue */
+```
+
+### Neutral OKLCH Scale
+
+Every brand needs a well-crafted neutral scale:
+
+```css
+/* Neutral scale with subtle warmth (hue 280 = slight purple undertone) */
+--color-neutral-50:  oklch(98% 0.005 280);   /* Near white */
+--color-neutral-100: oklch(95% 0.005 280);
+--color-neutral-200: oklch(90% 0.008 280);
+--color-neutral-300: oklch(82% 0.008 275);
+--color-neutral-400: oklch(70% 0.010 270);
+--color-neutral-500: oklch(65% 0.010 270);   /* Mid-gray */
+--color-neutral-600: oklch(50% 0.010 270);
+--color-neutral-700: oklch(40% 0.012 270);
+--color-neutral-800: oklch(30% 0.012 270);
+--color-neutral-900: oklch(20% 0.010 270);
+--color-neutral-950: oklch(12% 0.010 270);   /* Near black */
+
+/* Cool neutral alternative (hue 240 = blue undertone) */
+--color-neutral-500: oklch(65% 0.008 240);
+
+/* Warm neutral alternative (hue 60 = yellow undertone) */
+--color-neutral-500: oklch(65% 0.008 60);
+```
+
+> **Why OKLCH?** Unlike HSL, OKLCH maintains consistent perceived brightness across hues. A 65% lightness looks equally bright whether it's blue, green, or red.
 
 ---
 
@@ -692,17 +747,24 @@ font-family: "Instrument Sans", sans-serif;   /* body - Fontshare */
 
 ### Quick Setup with Fontsource
 
-**Install the 2025 meta stack:**
+**Install the 2025 meta stack (Google Fonts):**
 ```bash
-npm install @fontsource-variable/general-sans @fontsource-variable/switzer @fontsource-variable/instrument-sans
+npm install @fontsource-variable/manrope @fontsource-variable/space-grotesk @fontsource-variable/plus-jakarta-sans @fontsource-variable/outfit @fontsource-variable/syne @fontsource-variable/inter
 ```
 
 **Import in your CSS:**
 ```css
-@import "@fontsource-variable/general-sans";
-@import "@fontsource-variable/switzer";
-@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/plus-jakarta-sans";
 ```
+
+> **Note**: Fontshare fonts (General Sans, Switzer, Cabinet Grotesk, Instrument Sans, Clash Grotesk, Teneur) are NOT available on Fontsource. Download them directly from [Fontshare](https://www.fontshare.com) and self-host, or use these Google Fonts alternatives:
+> - General Sans → Plus Jakarta Sans or Outfit
+> - Switzer → Inter or Manrope
+> - Instrument Sans → Plus Jakarta Sans
+> - Clash Grotesk → Space Grotesk
+> - Teneur → Playfair Display or Fraunces
 
 **Or for Google Fonts alternatives:**
 ```bash
@@ -711,23 +773,37 @@ npm install @fontsource-variable/manrope @fontsource-variable/space-grotesk @fon
 
 ### Font Configuration in Tailwind CSS 4
 
+Choose ONE pairing for your project:
+
+**Tech / SaaS (The 2025 Meta):**
 ```css
 @theme inline {
-  /* Tech / SaaS (The 2025 Meta) */
-  --font-heading: 'Clash Grotesk', 'Space Grotesk', system-ui, sans-serif;
-  --font-sans: 'General Sans', 'Switzer', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+```
 
-  /* Premium / Luxury */
-  --font-heading: 'Teneur', Georgia, serif;
-  --font-sans: 'Cabinet Grotesk', system-ui, sans-serif;
+**Premium / Luxury:**
+```css
+@theme inline {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+}
+```
 
-  /* Modern Corporate */
+**Modern Corporate:**
+```css
+@theme inline {
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-sans: 'Manrope', system-ui, sans-serif;
+}
+```
 
-  /* Playful / Creative */
+**Playful / Creative:**
+```css
+@theme inline {
   --font-heading: 'Syne', system-ui, sans-serif;
-  --font-sans: 'Instrument Sans', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 ```
 
@@ -823,6 +899,26 @@ Why: Increased value contrast between accent and background;
 
 ## Export Formats
 
+### RealtimeColors.com Export
+
+Generate this snippet for instant UI preview:
+```
+Paste these into https://realtimecolors.com:
+
+Primary:   #3B82F6
+Secondary: #8B5CF6
+Accent:    #EC4899
+Neutral:   #F8FAFC (light) / #0F172A (dark)
+```
+
+**Example for a SaaS brand:**
+```
+Primary:   #6366F1  (Indigo - trust + innovation)
+Secondary: #8B5CF6  (Violet - creativity)
+Accent:    #F59E0B  (Amber - CTAs)
+Neutral:   #F9FAFB / #111827
+```
+
 ### Figma Import (ASE/JSON)
 ```json
 {
@@ -869,3 +965,33 @@ export const colors = {
   },
 } as const;
 ```
+
+---
+
+## Related Skills
+
+- **website-vibe-coding**: Use brand-kit-generator first to create your color palette and typography, then use website-vibe-coding to build the full website with those design tokens already configured.
+- **website-vibe-coding-troubleshooting**: Debug color contrast issues, animation performance, and deployment problems after building.
+
+---
+
+## Version History
+
+### v1.1.0 (2025-11)
+- Added OKLCH palette examples and neutral scale (2025+ standard)
+- Added RealtimeColors.com export format
+- Added AI/Futuristic, High-End Fashion, and Web3/Crypto industry presets
+- Fixed Tailwind CSS 4 font configuration (split into separate examples)
+- Clarified Fontsource vs Fontshare font availability
+- Updated industry table to use Google Fonts alternatives for broader accessibility
+- Added Related Skills section
+
+### v1.0.0 (2025-10)
+- Initial release with comprehensive brand kit generation
+- Color palette generation from images and descriptions
+- 11-shade scale development using Lab/LCH color space
+- WCAG accessibility validation
+- Dark mode support
+- Design token exports (CSS, Tailwind, JSON)
+- Typography pairing recommendations (2025 meta)
+- Visual artifact creation
