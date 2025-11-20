@@ -1,3 +1,11 @@
+---
+skill_name: brand-kit-generator
+description: Generate complete brand color systems with accessibility validation and design token exports. Use when creating color palettes from images or descriptions, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes 11-shade scale generation, dark mode support, and color theory principles.
+version: 1.0.0
+author: MaWoo Development
+tags: [design, colors, brand, accessibility, wcag, tailwind, design-tokens]
+---
+
 # Brand Kit & Color Palette Generator
 
 ## Activation
