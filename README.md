@@ -31,6 +31,23 @@ A collection of production-tested Claude Code skills for web development and pro
 - Recent context querying
 - Structured work documentation
 
+### brand-kit-generator
+**Purpose**: Generate complete brand color systems with accessibility validation and design token exports.
+
+**When to use**:
+- Creating color palettes from images or descriptions
+- Building complete brand kits with semantic naming
+- Validating WCAG accessibility compliance
+- Exporting design tokens (Tailwind, CSS, JSON)
+
+**Key features**:
+- Color extraction from images
+- 11-shade scale generation (50-950)
+- WCAG AA/AAA contrast validation
+- Multiple export formats (CSS variables, Tailwind, Style Dictionary)
+- Color theory principles and psychology
+- Visual artifact creation
+
 ### website-vibe-coding
 **Purpose**: Build production-quality marketing/business websites from scratch with minimal iteration.
 
@@ -77,6 +94,10 @@ A collection of production-tested Claude Code skills for web development and pro
 **Productivity**:
 - **Knowledge Management**: Obsidian
 - **Documentation**: Markdown with frontmatter
+
+**Design**:
+- **Color Systems**: WCAG accessibility, Lab/LCH color spaces
+- **Design Tokens**: Tailwind, CSS variables, Style Dictionary
 
 ## Installation
 
