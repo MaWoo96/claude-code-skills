@@ -1,23 +1,24 @@
 ---
 skill_name: brand-kit-generator
-description: Generate complete brand color systems with accessibility validation and design token exports. Use when creating color palettes from images or descriptions, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes 11-shade scale generation, dark mode support, and color theory principles.
+description: Generate complete brand identity systems including colors and typography. Use when creating color palettes, selecting font pairings, building brand kits with semantic naming, validating WCAG compliance, or exporting design tokens (Tailwind, CSS, JSON). Includes 11-shade color scales, 2025 typography recommendations, dark mode support, and accessibility validation.
 version: 1.0.0
 author: MaWoo Development
-tags: [design, colors, brand, accessibility, wcag, tailwind, design-tokens]
+tags: [design, colors, typography, brand, accessibility, wcag, tailwind, design-tokens, fonts]
 ---
 
-# Brand Kit & Color Palette Generator
+# Brand Kit Generator (Colors + Typography)
 
 ## Activation
 
 This skill activates when users need to:
 - Generate color palettes from images or descriptions
-- Create complete brand color systems
+- Select font pairings for their brand
+- Create complete brand identity systems
 - Validate accessibility compliance (WCAG)
 - Export design tokens for Tailwind, CSS, or design tools
 - Develop full brand kits with semantic naming
 
-**Trigger phrases**: "create a color palette", "brand kit", "extract colors from", "generate brand colors", "design tokens", "accessibility check", "WCAG compliance", "dark mode colors"
+**Trigger phrases**: "create a color palette", "brand kit", "extract colors from", "generate brand colors", "design tokens", "accessibility check", "WCAG compliance", "dark mode colors", "font pairing", "typography", "select fonts"
 
 ---
 
@@ -44,6 +45,50 @@ User: "Create a complete brand kit for my startup"
 → Light + dark mode
 → Complete documentation
 ```
+
+### Quick Start Example Output
+When user says "Quick palette for a fitness app":
+```css
+/* Colors */
+--color-primary-500: #EF4444;    /* Energetic red */
+--color-secondary-500: #1F2937;  /* Dark slate */
+--color-accent-500: #FBBF24;     /* Motivating yellow */
+
+/* Typography */
+font-family: 'Space Grotesk', sans-serif;  /* Headlines */
+font-family: 'Manrope', sans-serif;        /* Body */
+
+/* Install */
+npm install @fontsource-variable/space-grotesk @fontsource-variable/manrope
+```
+
+---
+
+## Industry Defaults
+
+When using Quick Start mode, apply these sensible defaults based on industry:
+
+### Industry Color + Font Presets
+
+| Industry | Primary Color | Accent | Heading Font | Body Font |
+|----------|--------------|--------|--------------|-----------|
+| Tech / SaaS | `#3B82F6` Blue | `#8B5CF6` Violet | Clash Grotesk | General Sans |
+| Finance / Luxury | `#0F172A` Slate | `#D4AF37` Gold | Teneur | Cabinet Grotesk |
+| Healthcare | `#10B981` Emerald | `#3B82F6` Blue | Manrope | Inter |
+| Fitness / Energy | `#EF4444` Red | `#FBBF24` Amber | Space Grotesk | Manrope |
+| Creative / Agency | `#8B5CF6` Violet | `#EC4899` Pink | Syne | Instrument Sans |
+| E-commerce | `#6366F1` Indigo | `#F59E0B` Orange | Plus Jakarta Sans | Outfit |
+| Education | `#0EA5E9` Sky | `#10B981` Emerald | Manrope | Inter |
+| Food / Restaurant | `#DC2626` Red | `#16A34A` Green | Cabinet Grotesk | General Sans |
+
+### Color Rationale by Industry
+
+**Tech / SaaS**: Blue builds trust, violet adds innovation
+**Finance**: Dark slate = stability, gold = premium
+**Healthcare**: Green = health, blue = trust
+**Fitness**: Red = energy/action, amber = motivation
+**Creative**: Violet = creativity, pink = boldness
+**E-commerce**: Indigo = reliability, orange = urgency
 
 ---
 
@@ -253,7 +298,7 @@ Fix: Use Primary-700 (5.1:1) or Primary-800 (7.3:1)
 
 ---
 
-## Phase 5: Design System Export
+## Phase 6: Design System Export
 
 ### CSS Custom Properties
 ```css
@@ -318,7 +363,7 @@ Fix: Use Primary-700 (5.1:1) or Primary-800 (7.3:1)
 
 ---
 
-## Phase 6: Documentation
+## Phase 7: Documentation
 
 ### Style Guide Structure
 ```markdown
@@ -424,14 +469,24 @@ When creating color artifacts:
 
 ## Export Checklist
 
-Before delivering final palette:
+Before delivering final brand kit:
 
+### Colors
 - [ ] All colors have descriptive names
 - [ ] Full 11-shade scales generated
 - [ ] WCAG AA compliance validated
 - [ ] Semantic tokens defined
 - [ ] CSS variables provided
 - [ ] Tailwind config provided
+
+### Typography
+- [ ] Heading + body font pairing selected
+- [ ] Font source identified (Fontshare/Google/etc)
+- [ ] Font import code provided (npm or CSS)
+- [ ] Tailwind font config provided
+- [ ] Font weight recommendations included
+
+### Documentation
 - [ ] Usage guidelines documented
 - [ ] Visual artifact created
 - [ ] Accessibility matrix included

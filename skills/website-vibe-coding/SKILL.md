@@ -1247,11 +1247,12 @@ const illustrationSources = {
 
 ### Font & Color Resources
 
-> **See the `brand-kit-generator` skill** for comprehensive font pairing recommendations, color palette tools, and 2025 typography standards. This includes:
-> - Premium font pairings (Satoshi + Inter, Clash Display + Neue Montreal)
-> - Google Fonts alternatives
-> - Color tools (OKLCH, Huemint, Khroma, Hypercolor)
-> - Industry-specific typography recommendations
+> **See the `brand-kit-generator` skill** for comprehensive brand identity resources including:
+> - 2025 font pairings by industry (Fontshare: General Sans, Clash Grotesk, Cabinet Grotesk)
+> - Google Fonts alternatives (Manrope, Space Grotesk, Plus Jakarta Sans)
+> - Color palette tools (OKLCH, Huemint, Khroma, Hypercolor)
+> - Industry color + font presets (Tech, Finance, Creative, etc.)
+> - Fontsource npm install commands for self-hosting
 
 ### Logo Placeholder Solutions
 
